@@ -1,5 +1,6 @@
 package com.example.RestfullAPI.IDModel;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -13,6 +14,7 @@ public class TitleID {
     @Column(name = "title")
     private String title;
 
+    @JsonFormat(pattern = "yyyy/MM/dd")
     @Column(name = "from_date")
     private Date fromDate;
 

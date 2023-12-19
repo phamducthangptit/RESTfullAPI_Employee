@@ -1,5 +1,6 @@
 package com.example.RestfullAPI.IDModel;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -12,6 +13,7 @@ public class SalaryID {
     private int empNo;
 
     @Column(name = "from_date")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date fromDate;
 
     @Override

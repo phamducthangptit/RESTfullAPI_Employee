@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/department")
 public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    @RequestMapping(value = "/department/get-all-department", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-all-department", method = RequestMethod.GET)
     public ResponseEntity<List<Department>> GetAllDepartment(){
         List<Department> listDepartment = departmentService.findAll();
         if(listDepartment.isEmpty()){
@@ -26,7 +26,7 @@ public class DepartmentController {
         return new ResponseEntity<List<Department>>(listDepartment, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/department/get-department/{deptNo}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-department/{deptNo}", method = RequestMethod.GET)
     public ResponseEntity<?> GetDepartment(@PathVariable("deptNo") String deptNo){
         Department department = departmentService.findBydeptNo(deptNo);
         if(department == null){
@@ -35,7 +35,7 @@ public class DepartmentController {
         return ResponseEntity.ok(department);
     }
 
-    @RequestMapping(value = "/department/add-department", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-department", method = RequestMethod.POST)
     public ResponseEntity<?> AddDepartment(@Validated @RequestBody Department department){
         if(departmentService.findBydeptNo(department.getDeptNo()) == null){ // trường hợp chưa có mã cần thêm trong db
             departmentService.save(department);
@@ -46,7 +46,7 @@ public class DepartmentController {
         }
     }
 
-    @RequestMapping(value = "/department/repair-department/{deptNo}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update-department/{deptNo}", method = RequestMethod.PUT)
     public ResponseEntity<?> RepairDepartment(@PathVariable("deptNo") String deptNo, @Validated @RequestBody Map<String, String> requestBody){
         Department department = departmentService.findBydeptNo(deptNo);
         if(requestBody.containsKey("deptName")){
@@ -64,7 +64,7 @@ public class DepartmentController {
         }
     }
 
-    @RequestMapping(value = "/department/delete-department/{deptNo}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-department/{deptNo}", method = RequestMethod.DELETE)
     public ResponseEntity<?> DeleteDepartment(@PathVariable("deptNo") String deptNo){
         Department department = departmentService.findBydeptNo(deptNo);
         if(department != null){ // tồn tại deptNo

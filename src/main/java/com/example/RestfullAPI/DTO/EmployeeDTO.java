@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Date;
 
 public class EmployeeDTO {
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date birthDate;
     private String firstName;
     private String lastName;
     private Gender gender;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date hireDate;
 
     public EmployeeDTO() {
